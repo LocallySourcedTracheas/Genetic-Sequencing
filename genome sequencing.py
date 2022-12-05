@@ -1,26 +1,8 @@
-#Vanessa Junco
-#COP2500 002
-#Final Project
-#11/20/22
 
-
-#make a file that writes lines of DNA
-#read the file
-#make result
-
-#REQUIREMENTS
-
-#Input (Using the input command or using keyboard/mouse listener in pygame.
-#Output (text, turtle, or something on the screen in pyGame)
-#Variables
-#If Statements
-#Loops (For or While)
-#Functions
-#Lists
-#Strings
- 
 import random
 
+
+# menu function to collect user input
 def menu():
     print("1. DNA Pairing")
     print("2. RNA Pairing")
@@ -28,12 +10,10 @@ def menu():
     choice = int(input("What do you choose? (Enter a number)\n"))
     return choice
 
-
+# Reads values and replaces base with correct pairing base
 def dna_key(string):
-    dna = [*string]
+    dna = [*string] #splices each character of the string into elements in a list
     sequence = []
-
-    x = 0
 
     for x in range(len(dna)):
         
@@ -56,8 +36,6 @@ def rna_key(string):
     rna = [*string]
     sequence = []
 
-    x = 0
-
     for x in range(len(rna)):
         
         if("A" in rna[x]):
@@ -73,7 +51,7 @@ def rna_key(string):
     new_sequence = ""
     return(new_sequence.join(sequence))
 
-
+# Generates random DNA bases using random function
 def dna_file(lines):
     sequence = []
     y = 0
@@ -123,6 +101,7 @@ def rna_file(lines):
 
 
 def main():
+    # opens files so dna/rna values can be written on them
     fw = open("DNA_Sequence.txt","w")
     rw = open("RNA_Sequence.txt","w")
 
@@ -142,6 +121,7 @@ def main():
             fw.write(dna_file(x))
             fw.close()
             
+            # Reads file and creates a pairing sequence using a key
             fw = open("DNA_Sequence.txt","r")
             j = fw.readline()
             p = str(dna_key(j))
@@ -149,12 +129,11 @@ def main():
             gw = open("DNA_Pair.txt", "w")
             gw.write(p)
             gw.close()
-            
             print()
             print("DNA_Sequence file has been generated with the", x ,"random DNA bases.")
             print("DNA_Pair file has been generated with the", x ,"pair DNA bases.")
             print()
-
+            option = 3
             
         if(option == 2):
             x = int(input("How many bases of DNA do you want to pair."))
@@ -173,13 +152,10 @@ def main():
             print("RNA_Sequence file has been generated with the", x ,"random RNA bases.")
             print("RNA_Pair file has been generated with the", x ,"pair RNA bases.")
             print()
-            
-        option = menu()
+            option = 3
+       
         
     fw.close()
     rw.close()
     
 main()
-
-
-
